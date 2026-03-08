@@ -1,1 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@theme {
+  /* 字体: 选用圆润的 Quicksand */
+  --font-sans: "Quicksand", "Nunito", sans-serif;
+
+  /* 主题色: 马卡龙色系 */
+  --color-brand-pink: #FF9AA2;   /* 蜜桃粉 (Primary) */
+  --color-brand-green: #B5EAD7;  /* 薄荷绿 (Secondary) */
+  --color-brand-yellow: #FFF5BA; /* 奶油黄 (Accent) */
+  --color-brand-purple: #E2F0CB; /* 淡紫 (Auxiliary) */
+  --color-brand-blue: #C7CEEA;   /* 柔和蓝 */
+  
+  /* 状态色 */
+  --color-success: #B5EAD7;
+  --color-warning: #FFDAC1;
+  --color-danger: #FFB7B2;
+
+  /* 背景色: 暖色调灰白 */
+  --color-bg-warm: #FAF9F6;
+  --color-bg-paper: #FFFFFF;
+
+  /* 圆角: 大圆角风格 */
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+
+  /* 阴影: 柔和阴影 */
+  --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 全局样式重置 */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-warm);
+  color: #4A4A4A; /* 深灰而非纯黑 */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}

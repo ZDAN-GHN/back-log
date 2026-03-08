@@ -37,9 +37,9 @@ interface TaskState {
 }
 
 const defaultCategories: Category[] = [
-  { id: DEFAULT_CATEGORY_IDS.WORK, name: '工作', color: '#60A5FA', icon: 'briefcase', isDefault: true },
-  { id: DEFAULT_CATEGORY_IDS.STUDY, name: '学习', color: '#34D399', icon: 'book-open', isDefault: true },
-  { id: DEFAULT_CATEGORY_IDS.LIFE, name: '生活', color: '#F472B6', icon: 'coffee', isDefault: true },
+  { id: DEFAULT_CATEGORY_IDS.WORK, name: '工作', color: '#FF9AA2', icon: 'briefcase', isDefault: true },
+  { id: DEFAULT_CATEGORY_IDS.STUDY, name: '学习', color: '#B5EAD7', icon: 'book-open', isDefault: true },
+  { id: DEFAULT_CATEGORY_IDS.LIFE, name: '生活', color: '#FFF5BA', icon: 'coffee', isDefault: true },
 ];
 
 const PRIORITY_MAP = { high: 3, medium: 2, low: 1 };
