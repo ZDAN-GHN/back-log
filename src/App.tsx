@@ -1,13 +1,11 @@
-import { BasicLayout } from './layout/BasicLayout'
+import {Todo} from "./pages/Todo.tsx";
 
 function App() {
-  return (
-      <BasicLayout>
-        <h1 className="text-3xl font-bold text-blue-600">
-          Project Initialized
-        </h1>
-      </BasicLayout>
-  )
+    return (
+        <div id="App">
+            <Todo/>
+        </div>
+    )
 }
 
 export default App
