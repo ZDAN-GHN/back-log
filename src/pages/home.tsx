@@ -8,7 +8,6 @@ import { TaskForm } from '../components/TaskForm';
 import { Plus, Search, Filter } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { Task } from '../types';
-import { DEFAULT_CATEGORY_IDS } from '../types';
 
 export const Home = () => {
   const { categories, filter, setFilter, addTask, deleteTask, updateTask } =
@@ -113,7 +112,7 @@ export const Home = () => {
               type="text"
               placeholder="搜索任务..."
               className="w-full pl-10 pr-4 py-2.5 bg-white rounded-xl border-2 border-transparent focus:border-brand-pink/30 focus:outline-none transition-colors"
-              // TODO: 实现搜索功能
+            // TODO: 实现搜索功能
             />
           </div>
           <Button variant="ghost" className="gap-2">
