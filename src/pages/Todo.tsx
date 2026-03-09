@@ -5,15 +5,16 @@ import {TaskList} from '../components/TaskList';
 import {Button} from '../components/Button';
 import {Modal} from '../components/Modal';
 import {TaskForm} from '../components/TaskForm';
-import {CheckCircle, Clock, AlertCircle, TrendingUp} from 'lucide-react';
-import {motion} from 'framer-motion';
+import {CheckCircle, Clock, AlertCircle, TrendingUp, ChevronDown} from 'lucide-react';
+import {motion, AnimatePresence} from 'framer-motion';
 import type {Task} from '../types';
 
 export const Todo = () => {
     const {tasks, categories, filter, setFilter, addTask, deleteTask, updateTask} = useTaskStore();
-    const [setShowCreateModal] = useState(false);
+    const [showCreateModal, setShowCreateModal] = useState(false);
     const [editingTask, setEditingTask] = useState<Task | null>(null);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState<string | null>(null);
+    const [showAddForm, setShowAddForm] = useState(false);
 
     // 计算统计数据
     const stats = {
@@ -146,39 +147,6 @@ export const Todo = () => {
                         <motion.div
                             initial={{opacity: 0, y: 20}}
                             animate={{opacity: 1, y: 0}}
-                            transition={{delay: 0.3}}
-                            className="bg-white rounded-2xl p-6 shadow-soft"
-                        >
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">任务列表</h2>
-                            <TaskList
-                                onCreateTask={handleCreateTask}
-                                onEditTask={handleEditTask}
-                                onDeleteTask={handleDeleteTask}
-                            />
-                        </motion.div>
-                    </div>
-
-                    {/* 右侧列 */}
-                    <div className="space-y-6">
-                        {/* 右上方 - 任务添加表单 */}
-                        <motion.div
-                            initial={{opacity: 0, y: 20}}
-                            animate={{opacity: 1, y: 0}}
-                            transition={{delay: 0.2}}
-                            className="bg-white rounded-2xl p-6 shadow-soft"
-                        >
-                            <h2 className="text-lg font-semibold text-gray-800 mb-4">添加任务</h2>
-                            <TaskForm
-                                task={null}
-                                onSubmit={handleSubmitTask}
-                                onCancel={() => setShowCreateModal(false)}
-                            />
-                        </motion.div>
-
-                        {/* 右下方 - 所有任务 */}
-                        <motion.div
-                            initial={{opacity: 0, y: 20}}
-                            animate={{opacity: 1, y: 0}}
                             transition={{delay: 0.1}}
                             className="bg-white rounded-2xl p-6 shadow-soft"
                         >
@@ -204,6 +172,73 @@ export const Todo = () => {
                                         className="w-full justify-start"
                                     />
                                 ))}
+                            </div>
+                        </motion.div>
+
+                    </div>
+
+                    {/* 右侧列 */}
+                    <div className="space-y-6">
+                        {/* 右上方 - 任务添加 */}
+                        <motion.div
+                            initial={{opacity: 0, y: 20}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{delay: 0.2}}
+                            className="bg-white rounded-2xl p-6 shadow-soft"
+                        >
+                            {/* 标题栏 */}
+                            <div
+                                className="flex items-center justify-between cursor-pointer"
+                                onClick={() => setShowAddForm(!showAddForm)}
+                            >
+                                <h2 className="text-lg font-semibold text-gray-800">添加任务</h2>
+                                <motion.div
+                                    animate={{rotate: showAddForm ? 180 : 0}}
+                                    transition={{duration: 0.2}}
+                                >
+                                    <ChevronDown size={20} className="text-gray-400"/>
+                                </motion.div>
+                            </div>
+
+                            {/* 表单内容 */}
+                            <AnimatePresence>
+                                {showAddForm && (
+                                    <motion.div
+                                        initial={{height: 0, opacity: 0}}
+                                        animate={{height: 'auto', opacity: 1}}
+                                        exit={{height: 0, opacity: 0}}
+                                        transition={{duration: 0.2}}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="pt-4">
+                                            <TaskForm
+                                                task={null}
+                                                onSubmit={(taskData) => {
+                                                    handleSubmitTask(taskData);
+                                                    setShowAddForm(false);
+                                                }}
+                                                onCancel={() => setShowAddForm(false)}
+                                            />
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+
+                        {/* 右下方 - 所有任务 */}
+                        <motion.div
+                            initial={{opacity: 0, y: 20}}
+                            animate={{opacity: 1, y: 0}}
+                            transition={{delay: 0.3}}
+                            className="bg-white rounded-2xl p-6 shadow-soft"
+                        >
+                            <h2 className="text-lg font-semibold text-gray-800 mb-4">任务列表</h2>
+                            <div className="h-[430px] overflow-y-auto">
+                                <TaskList
+                                    onCreateTask={handleCreateTask}
+                                    onEditTask={handleEditTask}
+                                    onDeleteTask={handleDeleteTask}
+                                />
                             </div>
                         </motion.div>
                     </div>
