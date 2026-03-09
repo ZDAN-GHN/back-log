@@ -15,12 +15,21 @@ interface TaskFormProps {
 export const TaskForm = ({ task, onSubmit, onCancel }: TaskFormProps) => {
   const { categories, filter } = useTaskStore();
 
+  // 获取今天的日期，格式化为YYYY-MM-DD
+  const getTodayDate = () => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     categoryId: filter.categoryId === 'all' ? categories[0]?.id || '' : filter.categoryId,
     priority: 'medium' as Priority,
-    dueDate: '',
+    dueDate: task ? '' : getTodayDate(), // 创建任务时默认为今天，编辑任务时保持原值
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -98,7 +107,7 @@ export const TaskForm = ({ task, onSubmit, onCancel }: TaskFormProps) => {
       </div>
 
       {/* 分类选择 */}
-      <div>
+      <div onClick={(e) => e.stopPropagation()}>
         <label className="block text-sm font-medium text-gray-700 mb-2">
           选择分类
         </label>
@@ -108,7 +117,11 @@ export const TaskForm = ({ task, onSubmit, onCancel }: TaskFormProps) => {
               key={category.id}
               category={category}
               isActive={formData.categoryId === category.id}
-              onClick={() => setFormData({ ...formData, categoryId: category.id })}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setFormData({ ...formData, categoryId: category.id });
+              }}
             />
           ))}
         </div>

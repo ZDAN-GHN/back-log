@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { BasicLayout } from '../layout/BasicLayout';
 import { Home } from '../pages/Home';
-import { Today } from '../pages/today';
+import {Today} from "../pages/Today.tsx";
 import { Stats } from '../pages/Stats';
 
 // 创建路由配置
@@ -21,10 +21,6 @@ export const router = createBrowserRouter([
       {
         path: 'stats',
         element: <Stats />,
-      },
-      {
-        path: 'settings',
-        element: <div className="p-8">设置页（待开发）</div>,
       },
     ],
   },

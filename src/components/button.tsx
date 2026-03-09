@@ -46,7 +46,7 @@ export const Button = ({
       whileHover={{ scale: disabled ? 1 : 1.02 }}
       className={cn(
         'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200',
-        'disabled:opacity-50 disabled:cursor-not-allowed',
+        'disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer',
         variantStyles[variant],
         sizeStyles[size],
         className

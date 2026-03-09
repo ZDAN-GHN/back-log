@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { CheckSquare, Calendar, BarChart2, Settings as SettingsIcon } from 'lucide-react';
+import { CheckSquare, Calendar, BarChart2 } from 'lucide-react';
 import { clsx } from 'clsx';
 import { motion } from 'framer-motion';
 
@@ -10,7 +10,6 @@ export const Header = () => {
     { path: '/', icon: CheckSquare, label: '任务' },
     { path: '/today', icon: Calendar, label: '今日' },
     { path: '/stats', icon: BarChart2, label: '统计' },
-    { path: '/settings', icon: SettingsIcon, label: '设置' },
   ];
 
   return (

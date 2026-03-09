@@ -30,6 +30,7 @@ export const Modal = ({ isOpen, onClose, title, children }: ModalProps) => {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               className="bg-white rounded-2xl shadow-2xl w-full max-w-md pointer-events-auto"
+              onClick={(e) => e.stopPropagation()}
             >
               {/* 弹窗头部 */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
